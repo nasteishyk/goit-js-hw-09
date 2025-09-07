@@ -13,7 +13,7 @@ if(savedData) {
     textareaMessage.value = savedData.message
 }
 
-form.addEventListener("input", (event) => {
+form.addEventListener("input", () => {
     formData.email = inputEmail.value.trim();
     formData.message = textareaMessage.value.trim();
 
@@ -28,12 +28,11 @@ form.addEventListener("submit", (event) => {
         return
     }
 
-    localStorage.removeItem("feedback-form-state")
-    formData.email = inputEmail.value.trim()
-    formData.message = textareaMessage.value.trim()
-    localStorage.setItem("feedback-form-state", JSON.stringify(formData))
-    console.log(formData)
+    console.log({ email: inputEmail.value.trim(), message: textareaMessage.value.trim() })
     form.reset()
+    localStorage.removeItem("feedback-form-state")
+    formData.email = ""
+    formData.message = ""
 })
 
 
